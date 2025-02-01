@@ -27,6 +27,7 @@ public class EmployeeRepositoryTest {
         Assertions.assertThat(savedEmployee1.getSalary()).isEqualTo(4000);
     }
     @Test
+    @DisplayName("Positive Test CASE fot FindByUsername")
     public void givenEmployee_whenFindByUsernmae_thenReturnEmployee(){
         //given
         String username="gb";
@@ -37,5 +38,15 @@ public class EmployeeRepositoryTest {
         //then
         Assertions.assertThat(returnedemployee.get()).isNotNull();
         Assertions.assertThat(returnedemployee.get()).isInstanceOf(Employee.class);
+    }
+    @Test
+    @DisplayName("NEGATIVE test CASE fot FindByUsername")
+    public void givenUsername_whenFindByUsername_thenRetunEmpty(){
+     //given
+        String username="gb";
+        //when
+       Optional<Employee> returnedEmployee= employeeRepository.findByUsername(username);
+       //then
+        Assertions.assertThat(returnedEmployee).isEmpty();
     }
 }
