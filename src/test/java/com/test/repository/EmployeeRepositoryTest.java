@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Optional;
+
 @DataJpaTest
 public class EmployeeRepositoryTest {
     @Autowired
@@ -23,5 +25,17 @@ public class EmployeeRepositoryTest {
         Assertions.assertThat(savedEmployee1).isNotNull();
         Assertions.assertThat(savedEmployee1.getId()).isEqualTo(1);
         Assertions.assertThat(savedEmployee1.getSalary()).isEqualTo(4000);
+    }
+    @Test
+    public void givenEmployee_whenFindByUsernmae_thenReturnEmployee(){
+        //given
+        String username="gb";
+       Employee employee= Employee.builder().name("Gajanan").username("gb").salary(2000).build();
+        employeeRepository.save(employee);
+        //when
+        Optional<Employee> returnedemployee =employeeRepository.findByUsername(username);
+        //then
+        Assertions.assertThat(returnedemployee.get()).isNotNull();
+        Assertions.assertThat(returnedemployee.get()).isInstanceOf(Employee.class);
     }
 }
