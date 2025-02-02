@@ -49,4 +49,18 @@ public class EmployeeRepositoryTest {
        //then
         Assertions.assertThat(returnedEmployee).isEmpty();
     }
+    @Test
+    @DisplayName("Positive test CASE fot FindByUsernameAndName")
+    public void givenEmployee_whenFindByUsernameAndName_thenRetunEmployee(){
+        //given
+        Employee employee = Employee.builder().name("Dnyaneshwar").username("db").salary(4000).build();
+        employeeRepository.save(employee);
+        //when
+        Optional<Employee> returnedEmployee= employeeRepository.findByUsernameAndName("db","Dnyaneshwar");
+        //then
+        Assertions.assertThat(returnedEmployee).isNotEmpty();
+        Assertions.assertThat(returnedEmployee.get().getUsername()).isEqualTo("db");
+        Assertions.assertThat(returnedEmployee.get().getName()).isEqualTo("Dnyaneshwar");
+
+    }
 }
