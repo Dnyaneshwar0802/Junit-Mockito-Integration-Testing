@@ -61,6 +61,16 @@ public class EmployeeRepositoryTest {
         Assertions.assertThat(returnedEmployee).isNotEmpty();
         Assertions.assertThat(returnedEmployee.get().getUsername()).isEqualTo("db");
         Assertions.assertThat(returnedEmployee.get().getName()).isEqualTo("Dnyaneshwar");
-
+    }
+    @Test
+    @DisplayName("Negative test CASE fot FindByUsernameAndName")
+    public void givenUsernameAndName_whenFindByUsernameAndName_thenRetunEmpty(){
+        //given
+        String username="gb";
+        String name="Dnya";
+        //when
+        Optional<Employee> returnedEmployee= employeeRepository.findByUsernameAndName(username,name);
+        //then
+        Assertions.assertThat(returnedEmployee).isEmpty();
     }
 }
