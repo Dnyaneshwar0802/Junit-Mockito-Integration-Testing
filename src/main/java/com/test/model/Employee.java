@@ -15,6 +15,9 @@ public class Employee {
     private String name;
     private String username;
     private int salary;
+    private String city;
+    private String email;
+    private int age;
 
     @Override
     public String toString() {
@@ -23,6 +26,9 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", salary=" + salary +
+                ", city='" + city + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
                 '}';
     }
 
@@ -56,5 +62,29 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
