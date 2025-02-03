@@ -86,4 +86,15 @@ public class EmployeeRepositoryTest {
         Assertions.assertThat(returnedEmployee.get().getName()).isEqualTo("Dnyaneshwar");
         Assertions.assertThat(returnedEmployee.get().getCity()).isEqualTo("Nanded");
     }
+    @Test
+    @DisplayName("Negative test CASE fot FindByNameAndCity")
+    public void givenNameAndCity_whenFindByNameAndCity_thenRetunEmpty(){
+        //given
+        String city="pune";
+        String name="Dnya";
+        //when
+        Optional<Employee> returnedEmployee= employeeRepository.findByNameAndCity(name,city);
+        //then
+        Assertions.assertThat(returnedEmployee).isEmpty();
+    }
 }
