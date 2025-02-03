@@ -21,5 +21,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
  */
   @Query("SELECT e FROM Employee e WHERE e.username = ?1 AND e.name = ?2")
   Optional<Employee> findByUsernameAndName(String username,String name);
+@Query("SELECT e from Employee e WHERE e.name=:name AND e.city=:city" )
+  Optional<Employee> findByNameAndCity(String name,String city);
 
 }
