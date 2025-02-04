@@ -31,5 +31,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT e from Employee e WHERE e.name=:name AND e.city=:city")
     Optional<Employee> findByNameAndCity(String name, String city);
 
-    List<Employee> getAll();
+    List<Employee> findAll();
 }
