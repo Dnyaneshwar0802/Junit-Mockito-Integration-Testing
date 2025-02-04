@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
@@ -96,6 +97,19 @@ public class EmployeeRepositoryTest {
         Optional<Employee> returnedEmployee= employeeRepository.findByNameAndCity(name,city);
         //then
         Assertions.assertThat(returnedEmployee).isEmpty();
+    }
+    @Test
+    @DisplayName("Positive test CASE fot findAll")
+    public void givenListOfEmployee_whengetAll_thenRetunListOfEmployee(){
+        //given
+        Employee employee1 = Employee.builder().name("Dnyaneshwar").city("Nanded").username("db").salary(4000).build();
+        Employee employee2 = Employee.builder().name("Gajanan").city("Nanded").username("gb").salary(6000).build();
+        employeeRepository.save(employee1);
+        employeeRepository.save(employee2);
+        //when
+        List<Employee> returnedEmployeeList =employeeRepository.findAll();
+        //then
+        Assertions.assertThat(returnedEmployeeList).hasSize(2);
     }
 }
 
