@@ -132,5 +132,15 @@ public class EmployeeRepositoryTest {
         Assertions.assertThat(returnedEmployee.get().getId()).isEqualTo(1);
 
     }
+    @Test
+    @DisplayName("Negative test CASE fot findById")
+    public void givenEmployee_whenfinById_thenReturnEmptyEmployee() {
+        //given
+        int id=1;
+        //when
+        Optional<Employee> returnedEmployee = employeeRepository.findById(1);
+        //then
+        Assertions.assertThat(returnedEmployee).isEmpty();
+    }
 }
 
