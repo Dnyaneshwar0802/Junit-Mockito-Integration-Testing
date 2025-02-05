@@ -32,5 +32,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     Optional<Employee> findByNameAndCity(String name, String city);
 
     List<Employee> findAll();
+
     Optional<Employee> findById(int id);
+
 }
