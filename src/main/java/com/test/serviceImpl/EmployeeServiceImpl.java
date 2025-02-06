@@ -12,9 +12,10 @@ import java.util.Optional;
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
+
     @Override
     public Employee saveEmployee(Employee employee) {
-        if(employee!=null) {
+        if (employee != null) {
             Employee savedEmployee1 = employeeRepository.save(employee);
             return savedEmployee1;
         }
@@ -23,10 +24,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<Employee> findById(int id) {
-        Optional<Employee> returnedEmployee=employeeRepository.findById(id);
-        if (returnedEmployee.isPresent()){
+        Optional<Employee> returnedEmployee = employeeRepository.findById(id);
+        if (returnedEmployee.isPresent()) {
             return returnedEmployee;
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<Employee> findByUsername(String username) {
+        Optional<Employee> returnedEmployee = employeeRepository.findByUsername(username);
+        return returnedEmployee;
     }
 }
