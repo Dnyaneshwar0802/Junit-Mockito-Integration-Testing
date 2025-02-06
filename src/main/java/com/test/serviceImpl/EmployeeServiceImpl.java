@@ -6,6 +6,8 @@ import com.test.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
@@ -17,5 +19,14 @@ public class EmployeeServiceImpl implements EmployeeService {
             return savedEmployee1;
         }
         return null;
+    }
+
+    @Override
+    public Optional<Employee> findById(int id) {
+        Optional<Employee> returnedEmployee=employeeRepository.findById(id);
+        if (returnedEmployee.isPresent()){
+            return returnedEmployee;
+        }
+        return Optional.empty();
     }
 }
