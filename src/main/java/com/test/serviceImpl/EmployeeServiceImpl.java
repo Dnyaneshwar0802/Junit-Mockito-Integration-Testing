@@ -3,6 +3,7 @@ package com.test.serviceImpl;
 import com.test.model.Employee;
 import com.test.repository.EmployeeRepository;
 import com.test.service.EmployeeService;
+import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +37,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         Optional<Employee> returnedEmployee = employeeRepository.findByUsername(username);
         return returnedEmployee;
     }
+
+    @Override
+    public Optional<Employee> findByUsernameAndName(String username, String name) {
+        Optional<Employee> employee =employeeRepository.findByUsernameAndName(username,name);
+        if(employee.isPresent()){
+            return employee;
+        }
+        return Optional.empty();
+    }
+
 }
