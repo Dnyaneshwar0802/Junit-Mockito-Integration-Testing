@@ -7,6 +7,7 @@ import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -54,6 +55,15 @@ public class EmployeeServiceImpl implements EmployeeService {
             return employee;
         }
         return Optional.empty();
+    }
+
+    @Override
+    public List<Employee> findAll() {
+        List<Employee> employeesList=employeeRepository.findAll();
+        if(!employeesList.isEmpty()){
+            return employeesList;
+        }
+        return List.of();
     }
 
 

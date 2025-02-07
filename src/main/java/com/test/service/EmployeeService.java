@@ -2,6 +2,7 @@ package com.test.service;
 
 import com.test.model.Employee;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeService {
@@ -10,4 +11,5 @@ public interface EmployeeService {
     Optional<Employee> findByUsername(String username);
     Optional<Employee> findByUsernameAndName(String username, String name);
     Optional<Employee> findByNameAndCity(String name, String city);
+    List<Employee> findAll();
 }
