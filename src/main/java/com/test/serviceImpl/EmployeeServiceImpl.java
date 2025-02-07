@@ -47,4 +47,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return Optional.empty();
     }
 
+    @Override
+    public Optional<Employee> findByNameAndCity(String name, String city) {
+        Optional<Employee> employee=employeeRepository.findByNameAndCity(name,city);
+        if(employee.isPresent()){
+            return employee;
+        }
+        return Optional.empty();
+    }
+
+
 }

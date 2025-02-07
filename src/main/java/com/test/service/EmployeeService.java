@@ -9,4 +9,5 @@ public interface EmployeeService {
     Optional<Employee> findById(int id);
     Optional<Employee> findByUsername(String username);
     Optional<Employee> findByUsernameAndName(String username, String name);
+    Optional<Employee> findByNameAndCity(String name, String city);
 }
