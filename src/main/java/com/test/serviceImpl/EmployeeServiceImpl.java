@@ -3,7 +3,6 @@ package com.test.serviceImpl;
 import com.test.model.Employee;
 import com.test.repository.EmployeeRepository;
 import com.test.service.EmployeeService;
-import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +40,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<Employee> findByUsernameAndName(String username, String name) {
-        Optional<Employee> employee =employeeRepository.findByUsernameAndName(username,name);
-        if(employee.isPresent()){
+        Optional<Employee> employee = employeeRepository.findByUsernameAndName(username, name);
+        if (employee.isPresent()) {
             return employee;
         }
         return Optional.empty();
@@ -50,8 +49,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<Employee> findByNameAndCity(String name, String city) {
-        Optional<Employee> employee=employeeRepository.findByNameAndCity(name,city);
-        if(employee.isPresent()){
+        Optional<Employee> employee = employeeRepository.findByNameAndCity(name, city);
+        if (employee.isPresent()) {
             return employee;
         }
         return Optional.empty();
@@ -59,8 +58,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        List<Employee> employeesList=employeeRepository.findAll();
-        if(!employeesList.isEmpty()){
+        List<Employee> employeesList = employeeRepository.findAll();
+        if (!employeesList.isEmpty()) {
             return employeesList;
         }
         return List.of();
