@@ -49,5 +49,15 @@ public class EmployeeServiceTest {
         //then
         Assertions.assertThat(returnedemployee.get()).isNotNull();
     }
-
+    @Test
+    @DisplayName("NEGATIVE test CASE fot FindByUsername")
+    public void givenUsername_whenFindByUsername_thenRetunEmpty() {
+        //given
+        String username = "gb";
+        BDDMockito.given(employeeRepository.findByUsername(username)).willReturn(Optional.empty());
+        //when
+        Optional<Employee> returnedEmployee = employeeService.findByUsername(username);
+        //then
+        Assertions.assertThat(returnedEmployee).isEmpty();
+    }
 }
