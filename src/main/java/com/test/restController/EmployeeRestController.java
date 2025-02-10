@@ -20,8 +20,8 @@ public class EmployeeRestController {
     public Employee saveEmployee(@RequestBody Employee employee){
         return employeeService.saveEmployee(employee);
     }
-    @GetMapping("/findById")
-    public Optional<Employee> findById(int id){
+    @GetMapping("/findById/{id}")
+    public Optional<Employee> findById(@PathVariable int id){
        return employeeService.findById(id);
     }
 }
