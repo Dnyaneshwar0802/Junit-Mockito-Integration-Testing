@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Optional;
+
 @WebMvcTest
 public class EmployeeRestControllerTest {
     @Autowired
@@ -42,5 +44,36 @@ public class EmployeeRestControllerTest {
         response.andExpect(MockMvcResultMatchers.status().isOk()).
                 andExpect(MockMvcResultMatchers.jsonPath("$.name", CoreMatchers.is(employee.getName())));
 
+    }
+
+    @Test
+    @DisplayName("Positive Test Case for FindById")
+    public void givenEmployee_whenFindByID_thenReturnEmployee() throws Exception {
+        //given :-
+        Employee employee = Employee.builder().id(1).name("Dnyaneshwar").city("Nanded").build();
+        BDDMockito.given(employeeService.findById(ArgumentMatchers.eq(1)))
+                /*.willReturn(Optional.of(employee));*/
+        //   .willAnswer(x->x.getArgument(0));
+        //above will answer not work
+                .willAnswer(invocation -> {
+                    int id = invocation.getArgument(0);
+                    return id == 1 ? Optional.of(employee) : Optional.empty();
+                });
+        //when
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/employeeRestController/findById/1")
+                .contentType(MediaType.APPLICATION_JSON));
+
+
+        /* Below that doesnt work
+        ResultActions response=mockMvc.perform(MockMvcRequestBuilders.get("/employeeRestController/findById")
+                  .contentType(MediaType.APPLICATION_JSON)
+                  .content(objectMapper.writeValueAsString(employee)));*/
+        //then
+        response.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Dnyaneshwar"));
+        /*response.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", CoreMatchers.is(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name", CoreMatchers.is(employee.getName())));*/
     }
 }
